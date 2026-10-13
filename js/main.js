@@ -14,26 +14,25 @@ nav.querySelectorAll('a').forEach((link) => {
   });
 });
 
-// Catálogo: filtro por categoría y búsqueda
-const chips = document.querySelectorAll('.chip');
-const categories = document.querySelectorAll('.category');
+// Catálogo: pestañas (Hamburguesas / Tacos) y búsqueda
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.tab-panel');
 const search = document.getElementById('buscar');
 const empty = document.getElementById('sin-resultados');
-let activeFilter = 'todos';
 
 const normalize = (text) =>
-  text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-function applyFilters() {
+function applySearch() {
   const query = normalize(search.value.trim());
+  const panel = document.querySelector('.tab-panel:not([hidden])');
   let totalVisible = 0;
 
-  categories.forEach((category) => {
-    const inFilter = activeFilter === 'todos' || category.dataset.category === activeFilter;
+  panel.querySelectorAll('.category').forEach((category) => {
     let visibleInCategory = 0;
 
     category.querySelectorAll('li').forEach((item) => {
-      const match = inFilter && normalize(item.textContent).includes(query);
+      const match = normalize(item.textContent).includes(query);
       item.hidden = !match;
       if (match) visibleInCategory++;
     });
@@ -45,16 +44,21 @@ function applyFilters() {
   empty.hidden = totalVisible > 0;
 }
 
-chips.forEach((chip) => {
-  chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.remove('is-active'));
-    chip.classList.add('is-active');
-    activeFilter = chip.dataset.filter;
-    applyFilters();
+tabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    tabs.forEach((t) => {
+      const active = t === tab;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', active);
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+    });
+    applySearch();
   });
 });
 
-search.addEventListener('input', applyFilters);
+search.addEventListener('input', applySearch);
 
 // Año actual en el pie de página
 document.getElementById('anio').textContent = new Date().getFullYear();
