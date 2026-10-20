@@ -62,5 +62,20 @@ document.querySelectorAll('[data-catalog]').forEach((section) => {
   search.addEventListener('input', applySearch);
 });
 
+// Opciones de productos: Generales / Restaurantes
+const choices = document.querySelectorAll('.choice');
+
+choices.forEach((choice) => {
+  choice.addEventListener('click', () => {
+    const opening = choice.getAttribute('aria-expanded') !== 'true';
+
+    choices.forEach((c) => {
+      const active = c === choice && opening;
+      c.setAttribute('aria-expanded', active);
+      document.getElementById(c.getAttribute('aria-controls')).hidden = !active;
+    });
+  });
+});
+
 // Año actual en el pie de página
 document.getElementById('anio').textContent = new Date().getFullYear();

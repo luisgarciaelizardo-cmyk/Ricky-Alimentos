@@ -29,8 +29,7 @@
       </button>
       <nav class="nav" id="menu">
         <a href="#nosotros">Nosotros</a>
-        <a href="#productos">Productos generales</a>
-        <a href="#restaurantes">Restaurantes</a>
+        <a href="#productos">Productos</a>
         <a href="#contacto">Contacto</a>
         <a href="https://wa.me/528711789799" class="btn btn--red btn--sm" target="_blank" rel="noopener">Pedir por WhatsApp</a>
       </nav>
@@ -93,12 +92,28 @@
     </div>
   </section>
 
-  <!-- ===== Productos generales ===== -->
-  <section class="section section--alt" id="productos" data-catalog>
+  <!-- ===== Productos ===== -->
+  <section class="section section--alt" id="productos">
     <div class="container">
       <p class="eyebrow eyebrow--red">Catálogo</p>
-      <h2 class="section__title">Productos generales</h2>
-      <p class="section__lead">Todo nuestro surtido de carnes. Consulta disponibilidad y precios por WhatsApp.</p>
+      <h2 class="section__title">Nuestros productos</h2>
+      <p class="section__lead">Elige una opción para ver los productos. Consulta disponibilidad y precios por WhatsApp.</p>
+
+      <div class="choices">
+        <button class="choice" aria-expanded="false" aria-controls="grupo-generales">
+          <span class="choice__icon" aria-hidden="true">🥩</span>
+          <span class="choice__text"><strong>Productos generales</strong><small>Res, víscera, puerco, pollo, pescados y mariscos</small></span>
+          <span class="choice__arrow" aria-hidden="true"></span>
+        </button>
+        <button class="choice" aria-expanded="false" aria-controls="grupo-restaurantes">
+          <span class="choice__icon" aria-hidden="true">🍽️</span>
+          <span class="choice__text"><strong>Productos para restaurantes</strong><small>Hamburguesas y tacos</small></span>
+          <span class="choice__arrow" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="catalog-group" id="grupo-generales" data-catalog hidden>
+      <h3 class="catalog-group__title">Productos generales</h3>
 
       <input type="search" class="search" placeholder="Buscar producto… (ej. arrachera, pechuga, camarón)" aria-label="Buscar en productos generales">
 
@@ -236,15 +251,11 @@
       </div>
 
       <p class="catalog-empty" hidden>No encontramos ese producto. <a href="https://wa.me/528711789799" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>, con gusto te ayudamos.</p>
-    </div>
-  </section>
+      </div>
 
-  <!-- ===== Productos para restaurantes ===== -->
-  <section class="section" id="restaurantes" data-catalog>
-    <div class="container">
-      <p class="eyebrow eyebrow--red">Menú para tu negocio</p>
-      <h2 class="section__title">Productos para restaurantes</h2>
-      <p class="section__lead">Elige tu tipo de negocio y consulta disponibilidad y precios por WhatsApp.</p>
+      <div class="catalog-group" id="grupo-restaurantes" data-catalog hidden>
+      <h3 class="catalog-group__title">Productos para restaurantes</h3>
+      <p class="section__lead">Elige tu tipo de negocio.</p>
 
       <div class="tabs" role="tablist" aria-label="Tipo de negocio">
         <button class="tab is-active" role="tab" id="tab-hamburguesas" aria-selected="true" aria-controls="panel-hamburguesas" data-tab="hamburguesas">
@@ -377,6 +388,8 @@
 
       <p class="catalog-empty" hidden>No encontramos ese producto. <a href="https://wa.me/528711789799" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>, con gusto te ayudamos.</p>
 
+      </div>
+
       <div class="catalog-cta">
         <p><strong>¿Te interesa algún producto?</strong> Pide tu cotización y disponibilidad.</p>
         <a href="https://wa.me/528711789799?text=Hola%20Ricky%20Alimentos%2C%20me%20gustar%C3%ADa%20cotizar%20productos." class="btn btn--red" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
@@ -385,7 +398,7 @@
   </section>
 
   <!-- ===== Contacto ===== -->
-  <section class="section section--alt" id="contacto">
+  <section class="section" id="contacto">
     <div class="container">
       <p class="eyebrow eyebrow--red">Contacto</p>
       <h2 class="section__title">Visítanos o haz tu pedido</h2>
